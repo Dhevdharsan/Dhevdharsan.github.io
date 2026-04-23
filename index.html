@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dhevdharsan BS — ML Engineer & Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0e0c;
+  --bg2:#141310;
+  --cream:#f0ebe0;
+  --cream-dim:#a09880;
+  --lime:#c8f53a;
+  --teal:#3af5c8;
+  --rose:#f53a7a;
+  --border:#2a2720;
+  --card:#18160f;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  line-height:1.8;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--lime);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .12s ease,width .2s,height .2s,background .2s;
+  mix-blend-mode:difference;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(200,245,58,.35);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .22s ease,width .3s,height .3s;
+}
+body:has(a:hover) #cursor{width:20px;height:20px}
+body:has(a:hover) #cursor-ring{width:56px;height:56px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 56px;
+  transition:background .4s,border .4s;
+}
+nav.solid{
+  background:rgba(15,14,12,.94);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(16px);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:3px;
+  color:var(--cream);text-decoration:none;
+}
+.nav-logo span{color:var(--lime)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{
+  color:var(--cream-dim);text-decoration:none;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;right:0;
+  height:1px;background:var(--lime);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.nav-links a:hover{color:var(--lime)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-open-tag{
+  font-size:10px;letter-spacing:.1em;color:var(--lime);
+  border:1px solid rgba(200,245,58,.3);padding:6px 14px;
+  text-decoration:none;transition:background .2s;
+}
+.nav-open-tag:hover{background:rgba(200,245,58,.08)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:100px 56px 60px;
+  position:relative;overflow:hidden;
+  gap:60px;
+}
+.hero-bg-lines{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    90deg,transparent,transparent 79px,
+    rgba(200,245,58,.018) 79px,rgba(200,245,58,.018) 80px
+  );
+  pointer-events:none;
+}
+.hero-blob{
+  position:absolute;
+  border-radius:50%;filter:blur(180px);pointer-events:none;
+}
+.hero-blob-1{width:700px;height:700px;background:rgba(200,245,58,.035);right:-200px;top:-200px;animation:blobDrift 15s ease-in-out infinite}
+.hero-blob-2{width:500px;height:500px;background:rgba(58,245,200,.025);left:-100px;bottom:-100px;animation:blobDrift 20s ease-in-out infinite reverse}
+@keyframes blobDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,20px)}}
+
+.hero-left{position:relative;z-index:1}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(200,245,58,.22);
+  background:rgba(200,245,58,.06);
+  color:var(--lime);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 16px;margin-bottom:36px;
+  animation:riseIn .7s ease both;
+}
+.hero-tag-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--lime);
+  animation:blink 2.5s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(68px,9vw,130px);
+  line-height:.88;letter-spacing:2px;
+  color:var(--cream);
+  animation:riseIn .7s .1s ease both;
+}
+.hero-name-accent{
+  font-family:'Crimson Pro',serif;
+  font-style:italic;font-weight:300;
+  color:var(--lime);font-size:clamp(56px,7.5vw,108px);
+  letter-spacing:-1px;
+}
+.hero-role{
+  margin-top:20px;font-size:14px;color:var(--cream-dim);
+  font-family:'Crimson Pro',serif;font-style:italic;
+  letter-spacing:.04em;
+  animation:riseIn .7s .2s ease both;
+}
+.hero-role strong{color:var(--cream);font-style:normal;font-weight:400}
+.hero-blurb{
+  margin-top:28px;color:var(--cream-dim);font-size:12px;
+  max-width:480px;line-height:2;
+  animation:riseIn .7s .3s ease both;
+}
+.hero-actions{
+  display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;
+  animation:riseIn .7s .4s ease both;
+}
+.btn-solid{
+  font-family:'Bebas Neue',sans-serif;letter-spacing:2px;
+  font-size:15px;padding:13px 32px;
+  background:var(--lime);color:var(--bg);
+  border:none;text-decoration:none;display:inline-block;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+  transition:opacity .2s,transform .2s;
+}
+.btn-solid:hover{opacity:.82;transform:translateY(-2px)}
+.btn-outline{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.06em;padding:13px 26px;
+  border:1px solid var(--border);color:var(--cream-dim);
+  text-decoration:none;display:inline-block;
+  transition:border-color .2s,color .2s;
+}
+.btn-outline:hover{border-color:var(--lime);color:var(--lime)}
+
+.hero-right{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:18px;
+  animation:riseIn .7s .5s ease both;
+}
+.stat-block{
+  border:1px solid var(--border);background:var(--card);
+  padding:22px 26px;
+  display:flex;align-items:baseline;gap:10px;
+  transition:border-color .3s;
+}
+.stat-block:hover{border-color:rgba(200,245,58,.3)}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;font-size:52px;
+  color:var(--lime);letter-spacing:-1px;line-height:1;
+}
+.stat-info{}
+.stat-label{color:var(--cream);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.stat-sub{color:var(--cream-dim);font-size:10px;margin-top:2px}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* ── SECTION SHELL ── */
+section{padding:96px 56px}
+.s-label{
+  display:flex;align-items:center;gap:14px;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:18px;
+}
+.s-label-line{height:1px;width:48px;background:var(--lime);opacity:.4}
+.s-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6vw,80px);
+  letter-spacing:2px;color:var(--cream);line-height:.95;
+  margin-bottom:64px;
+}
+.s-title em{
+  font-family:'Crimson Pro',serif;
+  font-style:italic;font-weight:300;color:var(--lime);letter-spacing:-1px;
+}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;max-width:1080px}
+.about-p{color:var(--cream-dim);font-size:13px;line-height:2;margin-bottom:18px}
+.about-p strong{color:var(--cream);font-weight:400}
+
+.timeline{margin-top:44px}
+.tl-item{
+  display:grid;grid-template-columns:auto 1fr;
+  gap:0 20px;padding-bottom:32px;position:relative;
+}
+.tl-item:last-child{padding-bottom:0}
+.tl-left{display:flex;flex-direction:column;align-items:center}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--lime);flex-shrink:0;margin-top:4px;
+}
+.tl-line{flex:1;width:1px;background:var(--border);margin-top:6px}
+.tl-item:last-child .tl-line{display:none}
+.tl-school{
+  font-family:'Bebas Neue',sans-serif;font-size:18px;
+  letter-spacing:1px;color:var(--cream);
+}
+.tl-deg{color:var(--cream-dim);font-size:12px;margin-top:4px;line-height:1.6}
+.tl-gpa{
+  display:inline-block;margin-top:10px;
+  background:rgba(200,245,58,.07);
+  border:1px solid rgba(200,245,58,.18);
+  color:var(--lime);font-size:10px;padding:3px 10px;letter-spacing:.06em;
+}
+
+.skills-panel{}
+.sg-head{
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cream-dim);margin-bottom:12px;margin-top:28px;
+}
+.sg-head:first-child{margin-top:0}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.t{
+  border:1px solid var(--border);background:rgba(255,255,255,.02);
+  color:var(--cream-dim);font-size:11px;padding:4px 11px;letter-spacing:.02em;
+  transition:border-color .2s,color .2s;cursor:default;
+}
+.t:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── EXPERIENCE ── */
+.exp-wrap{max-width:820px}
+.exp-card{
+  border:1px solid var(--border);background:var(--card);
+  padding:36px;position:relative;overflow:hidden;
+  transition:border-color .3s;
+}
+.exp-card:hover{border-color:rgba(200,245,58,.28)}
+.exp-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--lime);transform:scaleY(0);transform-origin:top;
+  transition:transform .4s;
+}
+.exp-card:hover::before{transform:scaleY(1)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}
+.exp-role{
+  font-family:'Bebas Neue',sans-serif;font-size:24px;
+  letter-spacing:1px;color:var(--cream);
+}
+.exp-co{color:var(--lime);font-size:12px;margin-top:3px}
+.exp-date{color:var(--cream-dim);font-size:10px;letter-spacing:.08em;white-space:nowrap;padding-top:4px}
+.exp-li{list-style:none}
+.exp-li li{
+  color:var(--cream-dim);font-size:12px;padding:5px 0 5px 20px;
+  position:relative;line-height:1.75;
+}
+.exp-li li::before{
+  content:'▸';position:absolute;left:0;
+  color:var(--lime);font-size:10px;top:7px;
+}
+
+/* ── PROJECTS ── */
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.proj-card{
+  border:1px solid var(--border);background:var(--card);
+  padding:32px;position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.proj-card:hover{border-color:rgba(200,245,58,.3);transform:translateY(-5px)}
+.proj-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--lime),transparent 70%);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s;
+}
+.proj-card:hover::after{transform:scaleX(1)}
+.proj-n{
+  position:absolute;top:14px;right:20px;
+  font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;
+  font-size:80px;color:rgba(200,245,58,.05);line-height:1;pointer-events:none;
+}
+.badge{
+  display:inline-block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:1px;margin-bottom:16px;
+}
+.b-ai{background:rgba(200,245,58,.09);color:var(--lime);border:1px solid rgba(200,245,58,.2)}
+.b-pub{background:rgba(58,245,200,.09);color:var(--teal);border:1px solid rgba(58,245,200,.2)}
+.b-swe{background:rgba(245,58,122,.09);color:var(--rose);border:1px solid rgba(245,58,122,.2)}
+.proj-name{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;
+  letter-spacing:.5px;color:var(--cream);margin-bottom:12px;line-height:1.15;
+}
+.proj-desc{color:var(--cream-dim);font-size:12px;line-height:1.9;margin-bottom:18px}
+.proj-metrics{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.pm{
+  font-size:10px;color:var(--lime);
+  display:flex;align-items:center;gap:5px;letter-spacing:.04em;
+}
+.pm::before{content:'↑';font-size:9px}
+.pm.neutral::before{content:'◆'}
+.stack{display:flex;flex-wrap:wrap;gap:5px}
+.sc{
+  font-size:9px;color:var(--cream-dim);
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  padding:2px 8px;letter-spacing:.04em;
+}
+.proj-links{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.proj-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 14px;text-decoration:none;
+  border:1px solid var(--border);color:var(--cream-dim);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.proj-link:hover{border-color:var(--lime);color:var(--lime);background:rgba(200,245,58,.05)}
+.proj-link.primary{border-color:rgba(200,245,58,.3);color:var(--lime)}
+.proj-link.primary:hover{background:rgba(200,245,58,.1)}
+.pub-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 12px;text-decoration:none;margin-top:10px;
+  border:1px solid rgba(58,245,200,.25);color:var(--teal);
+  transition:border-color .2s,background .2s;
+}
+.pub-link:hover{background:rgba(58,245,200,.08);border-color:var(--teal)}
+
+/* ── RESEARCH ── */
+#research{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pub-list{max-width:900px}
+.pub{
+  display:grid;grid-template-columns:80px 1fr;gap:24px;
+  padding:28px 0;border-bottom:1px solid var(--border);align-items:start;
+}
+.pub:first-child{border-top:1px solid var(--border)}
+.pub-yr{
+  font-family:'Bebas Neue',sans-serif;font-size:15px;
+  color:var(--lime);letter-spacing:.06em;padding-top:3px;
+}
+.pub-venue{font-size:10px;color:var(--cream-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.pub-title{
+  font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;
+  font-size:22px;color:var(--cream);line-height:1.3;margin-bottom:10px;
+}
+.pub-meta{font-size:11px;color:var(--teal);letter-spacing:.03em}
+.pub-doi{font-size:10px;color:var(--cream-dim);margin-top:5px}
+
+/* ── CERTS ── */
+.certs-row{display:flex;gap:18px;flex-wrap:wrap;max-width:900px}
+.cert{
+  border:1px solid var(--border);background:var(--card);
+  padding:26px 30px;flex:1;min-width:230px;
+  transition:border-color .3s;
+}
+.cert:hover{border-color:rgba(200,245,58,.28)}
+.cert-ic{font-size:26px;margin-bottom:14px;display:block}
+.cert-name{
+  font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.5px;
+  color:var(--cream);line-height:1.3;margin-bottom:6px;
+}
+.cert-dt{color:var(--cream-dim);font-size:10px;letter-spacing:.08em}
+.cert-link{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:12px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--lime);text-decoration:none;
+  border-bottom:1px solid rgba(200,245,58,.3);padding-bottom:1px;
+  transition:border-color .2s;
+}
+.cert-link:hover{border-color:var(--lime)}
+
+/* ── EXTRA ── */
+.extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px}
+.extra-card{
+  border:1px solid var(--border);background:var(--card);
+  padding:28px;transition:border-color .3s;
+}
+.extra-card:hover{border-color:rgba(58,245,200,.28)}
+.extra-ic{font-size:22px;display:block;margin-bottom:12px}
+.extra-name{
+  font-family:'Bebas Neue',sans-serif;font-size:19px;
+  letter-spacing:.5px;color:var(--cream);margin-bottom:8px;
+}
+.extra-desc{color:var(--cream-dim);font-size:12px;line-height:1.85}
+.hl{color:var(--teal)}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg2);border-top:1px solid var(--border)}
+.contact-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;max-width:1080px;
+}
+.contact-head{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,7vw,100px);
+  letter-spacing:2px;color:var(--cream);line-height:.9;margin-bottom:24px;
+}
+.contact-head em{
+  font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;
+  color:var(--lime);
+}
+.contact-sub{color:var(--cream-dim);font-size:13px;line-height:2}
+.c-links{display:flex;flex-direction:column;gap:14px}
+.c-link{
+  display:flex;align-items:center;gap:16px;
+  border:1px solid var(--border);padding:18px 22px;
+  text-decoration:none;color:var(--cream);
+  transition:border-color .2s,background .2s;
+}
+.c-link:hover{border-color:var(--lime);background:rgba(200,245,58,.04)}
+.c-link-ic{font-size:18px;flex-shrink:0}
+.c-link-body{flex:1}
+.c-link-lbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim)}
+.c-link-val{
+  font-family:'Bebas Neue',sans-serif;font-size:16px;
+  letter-spacing:.5px;margin-top:3px;
+}
+.c-arrow{color:var(--cream-dim);transition:transform .2s,color .2s;font-size:18px}
+.c-link:hover .c-arrow{transform:translateX(5px);color:var(--lime)}
+
+/* ── FOOTER ── */
+footer{
+  padding:28px 56px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--border);
+  color:var(--cream-dim);font-size:10px;letter-spacing:.08em;
+}
+.foot-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:16px;
+  color:var(--cream);letter-spacing:2px;
+}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+::-webkit-scrollbar-thumb:hover{background:var(--lime)}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  section{padding:72px 24px}
+  .hero{padding:100px 24px 60px;grid-template-columns:1fr;gap:48px}
+  .hero-right{flex-direction:row;flex-wrap:wrap}
+  .stat-block{flex:1;min-width:120px}
+  .about-grid,.contact-wrap,.extra-grid{grid-template-columns:1fr;gap:40px}
+  .proj-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">DBS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:dbhavanisati@umass.edu" class="nav-open-tag">OPEN TO WORK</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Summer 2026 Internships</div>
+    <h1 class="hero-name">
+      DHEV<span class="hero-name-accent">dharsan</span><br>BHAVANI SK
+    </h1>
+    <p class="hero-role"><strong>ML Engineer</strong> &amp; <strong>Software Developer</strong></p>
+    <p class="hero-blurb">
+      M.S. Computer Science @ UMass Amherst · 4.0 GPA · Two peer-reviewed publications in medical imaging · Production LLM systems from scratch · AWS Solutions Architect Certified.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:dbhavanisati@umass.edu" class="btn-solid">GET IN TOUCH</a>
+      <a href="https://linkedin.com/in/dhevdharsan-bs/" target="_blank" class="btn-outline">LinkedIn ↗</a>
+      <a href="https://github.com/Dhevdharsan" target="_blank" class="btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat-num">4.0</div>
+      <div class="stat-info">
+        <div class="stat-label">GPA</div>
+        <div class="stat-sub">UMass Amherst M.S.</div>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">2</div>
+      <div class="stat-info">
+        <div class="stat-label">Publications</div>
+        <div class="stat-sub">Frontiers · Springer</div>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">5+</div>
+      <div class="stat-info">
+        <div class="stat-label">ML Projects</div>
+        <div class="stat-sub">RAG · CV · Agents</div>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">☁</div>
+      <div class="stat-info">
+        <div class="stat-label">AWS Certified</div>
+        <div class="stat-sub">Solutions Architect</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="s-label"><span class="s-label-line"></span>About</div>
+  <h2 class="s-title">BACK&shy;GROUND<br>&amp; <em>Skills</em></h2>
+  <div class="about-grid reveal">
+    <div>
+      <p class="about-p">I'm a <strong>CS grad student</strong> at UMass Amherst with a deep focus on production ML systems and agentic AI. My work spans async microservice architecture, RAG pipelines, and medical imaging research.</p>
+      <p class="about-p">Two peer-reviewed publications. I can defend every architectural decision I make — ask me why <strong>pgvector over Pinecone</strong>, why <strong>Isolation Forest over k-means</strong>, or why <strong>ResNet-50 beat EfficientNet</strong> on a small dataset.</p>
+      <p class="about-p">I ship things that run in production, not just notebooks. Python · FastAPI · Docker · AWS · PyTorch.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="tl-school">UNIVERSITY OF MASSACHUSETTS AMHERST</div>
+            <div class="tl-deg">M.S. Computer Science · Expected May 2027<br>Reinforcement Learning · Systems for Data Science</div>
+            <span class="tl-gpa">GPA 4.0 / 4.0</span>
+          </div>
+        </div>
+        <div class="tl-item" style="margin-top:24px">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div>
+            <div class="tl-school">VELLORE INSTITUTE OF TECHNOLOGY, CHENNAI</div>
+            <div class="tl-deg">B.Tech Computer Science · May 2025<br>Python · ML · NLP · Web Programming · Data Analysis</div>
+            <span class="tl-gpa">GPA 9.19 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-panel">
+      <div class="sg-head">Languages</div>
+      <div class="tags">
+        <span class="t">Python</span><span class="t">SQL</span><span class="t">JavaScript</span><span class="t">TypeScript</span><span class="t">C++</span>
+      </div>
+      <div class="sg-head">ML / AI</div>
+      <div class="tags">
+        <span class="t">PyTorch</span><span class="t">TensorFlow</span><span class="t">scikit-learn</span><span class="t">RAG Pipelines</span><span class="t">LLM Integration</span><span class="t">SHAP</span><span class="t">Isolation Forest</span><span class="t">DBSCAN</span><span class="t">ResNet-50</span><span class="t">U-Net</span><span class="t">Prompt Engineering</span>
+      </div>
+      <div class="sg-head">Backend & Infra</div>
+      <div class="tags">
+        <span class="t">FastAPI</span><span class="t">PostgreSQL</span><span class="t">Redis</span><span class="t">pgvector</span><span class="t">Docker</span><span class="t">Microservices</span><span class="t">REST APIs</span>
+      </div>
+      <div class="sg-head">Cloud & Tools</div>
+      <div class="tags">
+        <span class="t">AWS ✓ Certified</span><span class="t">GCP (T4 GPU)</span><span class="t">Ollama</span><span class="t">Next.js</span><span class="t">React</span><span class="t">Tailwind</span><span class="t">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="s-label"><span class="s-label-line"></span>Experience</div>
+  <h2 class="s-title">WHERE I'VE<br><em>Worked</em></h2>
+  <div class="exp-wrap reveal">
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">SOFTWARE ENGINEERING INTERN</div>
+          <div class="exp-co">DATAMARK, Inc · San Antonio, TX</div>
+        </div>
+        <div class="exp-date">AUG – OCT 2023</div>
+      </div>
+      <ul class="exp-li">
+        <li>Built a Power Automate RPA pipeline processing tens of thousands of records end-to-end — cut per-row time from ~60s to 10–15s, a <strong style="color:var(--cream)">75%+ reduction</strong></li>
+        <li>Designed idempotent pipeline: read Excel rows → check empty fields → submit to Google Forms → mark processed</li>
+        <li>Deployed a Power Apps barcode scanning app across <strong style="color:var(--cream)">4 production sites</strong> to eliminate wrong-address delivery failures</li>
+        <li>Built a live Power BI dashboard tracking <strong style="color:var(--cream)">100,000+ shipments</strong> for 50–100 daily operators</li>
+        <li>Shipped in Agile sprints under the Director of Software; served as proof of concept for broader automation adoption</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label"><span class="s-label-line"></span>Projects</div>
+  <h2 class="s-title">THINGS I'VE<br><em>Built</em></h2>
+  <div class="proj-grid reveal">
+
+    <div class="proj-card">
+      <div class="proj-n">01</div>
+      <span class="badge b-ai">AI / LLM System</span>
+      <div class="proj-name">LOGSENSE AI</div>
+      <div class="proj-desc">AI-powered log intelligence platform with async FastAPI backend, pgvector semantic storage, Redis caching, and Llama 3 in a RAG-style pipeline delivering plain-English root cause summaries. Separate ingestion, retrieval, and inference microservice layers.</div>
+      <div class="proj-metrics">
+        <span class="pm">500 logs in 1.5s</span>
+        <span class="pm">4.8% anomaly rate</span>
+        <span class="pm">15 clusters</span>
+      </div>
+      <div class="stack">
+        <span class="sc">FastAPI</span><span class="sc">PostgreSQL</span><span class="sc">pgvector</span><span class="sc">Redis</span><span class="sc">Llama 3</span><span class="sc">Ollama</span><span class="sc">Docker</span><span class="sc">Next.js</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/Dhevdharsan/Logsense-ai" target="_blank" class="proj-link primary">⌥ GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-n">02</div>
+      <span class="badge b-swe">Live · Deployed</span>
+      <div class="proj-name">AGENTIC RESEARCH ASSISTANT</div>
+      <div class="proj-desc">Live AI agent with real-time byte streaming, ThreadPoolExecutor concurrent scraping, and strict JSON-mode LLM outputs with source attribution. Solved Nginx cloud buffering (X-Accel-Buffering header) and pydantic-core Rust compilation issues in production. FastAPI serves frontend via FileResponse — zero CORS.</div>
+      <div class="proj-metrics">
+        <span class="pm neutral">Live on Render</span>
+        <span class="pm">Concurrent scraping</span>
+        <span class="pm neutral">Real-time streaming</span>
+      </div>
+      <div class="stack">
+        <span class="sc">Python</span><span class="sc">FastAPI</span><span class="sc">gpt-4o-mini</span><span class="sc">SerpAPI</span><span class="sc">BeautifulSoup4</span><span class="sc">Render</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/Dhevdharsan/Agentic-ai-search" target="_blank" class="proj-link primary">⌥ GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-n">03</div>
+      <span class="badge b-pub">Published · Frontiers 2025</span>
+      <div class="proj-name">NRIQA & LDCT ENHANCEMENT</div>
+      <div class="proj-desc">Diagnosis-based no-reference image quality assessment for 1,000 low-dose CT scans. SVR with 25 SHAP-selected features (GLCM, LBP, frequency-domain) and 100-fold cross-validation achieved PLCC 0.9671 — surpassing every JND baseline. 96% radiologist-verified quality improvement.</div>
+      <div class="proj-metrics">
+        <span class="pm">PLCC 0.9671</span>
+        <span class="pm">96% radiologist-verified</span>
+        <span class="pm neutral">Best prior: 0.955</span>
+      </div>
+      <div class="stack">
+        <span class="sc">Python</span><span class="sc">scikit-learn</span><span class="sc">OpenCV</span><span class="sc">SHAP</span><span class="sc">SVR</span><span class="sc">GCP T4 GPU</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/Dhevdharsan/Low-Dose-CT-Scan-NRIQA-and-Enhancement-" target="_blank" class="proj-link primary">⌥ GitHub ↗</a>
+        <a href="https://www.frontiersin.org/journals/radiology/articles/10.3389/fradi.2025.1704113/full" target="_blank" class="proj-link">📄 Paper ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-n">04</div>
+      <span class="badge b-pub">Published · Springer 2024</span>
+      <div class="proj-name">CATARACT DETECTION VIA DEEP LEARNING</div>
+      <div class="proj-desc">Comparative study on 1,015 retinal images. ResNet-50 with ImageNet transfer learning achieved 83% accuracy vs EfficientNet's 70% — better across precision, recall, F1, and AUC. Skip connections outperform more complex architectures on constrained medical datasets.</div>
+      <div class="proj-metrics">
+        <span class="pm">83% accuracy</span>
+        <span class="pm">Beats EfficientNet</span>
+        <span class="pm neutral">Scopus & WoS indexed</span>
+      </div>
+      <div class="stack">
+        <span class="sc">Python</span><span class="sc">TensorFlow</span><span class="sc">ResNet-50</span><span class="sc">Adam</span><span class="sc">GCP</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://www.google.co.in/books/edition/Advances_in_Electrical_and_Computer_Tech/dW9fEQAAQBAJ?hl=en&gbpv=1&pg=PA106&printsec=frontcover" target="_blank" class="proj-link">📄 Paper ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="s-label"><span class="s-label-line"></span>Research</div>
+  <h2 class="s-title">PUBLI&shy;CATIONS</h2>
+  <div class="pub-list reveal">
+    <div class="pub">
+      <div class="pub-yr">2025</div>
+      <div>
+        <div class="pub-venue">Frontiers in Radiology · Peer-Reviewed Journal</div>
+        <div class="pub-title">Diagnosis-Based No-Reference Image Quality Assessment and Enhancement of Low-Dose CT Images</div>
+        <div class="pub-meta">PLCC 0.9671 · Surpasses all JND baselines · 96% radiologist-verified</div>
+        <div class="pub-doi">DOI: 10.3389/fradi.2025.1704113</div>
+        <a href="https://www.frontiersin.org/journals/radiology/articles/10.3389/fradi.2025.1704113/full" target="_blank" class="pub-link">Read Paper ↗</a>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-yr">2024</div>
+      <div>
+        <div class="pub-venue">Springer ICAECT · Scopus &amp; Web of Science Indexed</div>
+        <div class="pub-title">Cataract Detection via Deep Learning — A Comparative Study of CNN Architectures on Retinal Images</div>
+        <div class="pub-meta">ResNet-50 · 83% accuracy · Outperforms EfficientNet across all metrics</div>
+        <div class="pub-doi">Springer Proceedings · ICAECT 2024</div>
+        <a href="https://www.google.co.in/books/edition/Advances_in_Electrical_and_Computer_Tech/dW9fEQAAQBAJ?hl=en&gbpv=1&pg=PA106&printsec=frontcover" target="_blank" class="pub-link">Read Paper ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="s-label"><span class="s-label-line"></span>Certifications</div>
+  <h2 class="s-title">CREDEN&shy;TIALS</h2>
+  <div class="certs-row reveal">
+    <div class="cert">
+      <span class="cert-ic">☁️</span>
+      <div class="cert-name">AWS CERTIFIED SOLUTIONS ARCHITECT – ASSOCIATE</div>
+      <div class="cert-dt">JULY 2024 · VERIFIED CREDENTIAL</div>
+      <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/a232b2aeccc24b59acfa3f3196ac1778" target="_blank" class="cert-link">Verify ↗</a>
+    </div>
+    <div class="cert">
+      <span class="cert-ic">🌩️</span>
+      <div class="cert-name">AWS CLOUD PRACTITIONER ESSENTIALS</div>
+      <div class="cert-dt">NOVEMBER 2023</div>
+    </div>
+    <div class="cert">
+      <span class="cert-ic">📊</span>
+      <div class="cert-name">MICROSOFT POWER BI</div>
+      <div class="cert-dt">SEPTEMBER 2023 · MS LEARN</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section>
+  <div class="s-label"><span class="s-label-line"></span>Beyond Code</div>
+  <h2 class="s-title">EXTRA&shy;CURRICULARS</h2>
+  <div class="extra-grid reveal">
+    <div class="extra-card">
+      <span class="extra-ic">🏊</span>
+      <div class="extra-name">COMPETITIVE SWIMMING</div>
+      <div class="extra-desc">
+        <span class="hl">2 Golds &amp; 1 Bronze</span> at VIBSPORTS'24. Competed at the <span class="hl">All India Inter University Aquatic Championship</span> representing VIT Chennai — finished top 15 nationally. National-level competitor.
+      </div>
+    </div>
+    <div class="extra-card">
+      <span class="extra-ic">🎖️</span>
+      <div class="extra-name">STUDENT LEADERSHIP</div>
+      <div class="extra-desc">
+        <span class="hl">Student Coordinator</span> for the National Level Swimming Championship at VIT. <span class="hl">House Captain</span> at D.A.V. School — led a student body of 2,000+.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap reveal">
+    <div>
+      <div class="s-label"><span class="s-label-line"></span>Contact</div>
+      <div class="contact-head">LET'S<br><em>work</em><br>TOGETHER.</div>
+      <p class="contact-sub">Seeking Summer 2026 internships in ML Engineering, Software Engineering &amp; AI. Available full summer, based in Amherst, MA.</p>
+    </div>
+    <div class="c-links">
+      <a href="mailto:dbhavanisati@umass.edu" class="c-link">
+        <span class="c-link-ic">✉️</span>
+        <div class="c-link-body">
+          <div class="c-link-lbl">Email</div>
+          <div class="c-link-val">dbhavanisati@umass.edu</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/dhevdharsan-bs/" target="_blank" class="c-link">
+        <span class="c-link-ic">💼</span>
+        <div class="c-link-body">
+          <div class="c-link-lbl">LinkedIn</div>
+          <div class="c-link-val">dhevdharsan-bs</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+      <a href="https://github.com/Dhevdharsan" target="_blank" class="c-link">
+        <span class="c-link-ic">⌨️</span>
+        <div class="c-link-body">
+          <div class="c-link-lbl">GitHub</div>
+          <div class="c-link-val">Dhevdharsan</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+      <a href="tel:4133620214" class="c-link">
+        <span class="c-link-ic">📞</span>
+        <div class="c-link-body">
+          <div class="c-link-lbl">Phone</div>
+          <div class="c-link-val">(413) 362-0214</div>
+        </div>
+        <span class="c-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-logo">DHEVDHARSAN BS</span>
+  <span>M.S. CS · UMass Amherst · 2027</span>
+  <span>Amherst, MA</span>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+
+// Nav
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>50));
+
+// Scroll reveal
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+revs.forEach(r=>io.observe(r));
+
+// Stagger cards
+document.querySelectorAll('.proj-grid,.certs-row,.extra-grid').forEach(g=>{
+  [...g.children].forEach((c,i)=>{
+    c.style.transitionDelay=i*.09+'s';
+    c.classList.add('reveal');
+    io.observe(c);
+  });
+});
+</script>
+</body>
+</html>
