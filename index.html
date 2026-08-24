@@ -603,7 +603,7 @@ footer{
       </div>
     </div>
     <div class="stat-block">
-      <div class="stat-num">9</div>
+      <div class="stat-num">10</div>
       <div class="stat-info">
         <div class="stat-label">Projects Shipped</div>
         <div class="stat-sub">2 live in production</div>
@@ -678,7 +678,7 @@ footer{
     <div class="exp-card">
       <div class="exp-header">
         <div>
-          <div class="exp-role">AI ENGINEERING INTERN </div>
+          <div class="exp-role">AI ENGINEERING INTERN</div>
           <div class="exp-co">DATAMARK, Inc · San Antonio, TX</div>
         </div>
         <div class="exp-date">JUL – AUG 2026</div>
@@ -716,10 +716,10 @@ footer{
 <section id="projects">
   <div class="s-label"><span class="s-label-line"></span>Projects</div>
   <h2 class="s-title">THINGS I'VE<br><em>Built</em></h2>
-  <p class="s-subtitle">Nine projects spanning production LLM systems, reinforcement learning, distributed ML, and a client-facing web app used by real people every day.</p>
+  <p class="s-subtitle">Ten projects spanning production LLM systems, reinforcement learning, distributed ML, and a client-facing web app used by real people every day.</p>
 
   <div class="filter-row">
-    <button class="filter-btn active" data-filter="all">All (9)</button>
+    <button class="filter-btn active" data-filter="all">All (10)</button>
     <button class="filter-btn" data-filter="ai">AI / ML</button>
     <button class="filter-btn" data-filter="systems">Systems &amp; Web</button>
     <button class="filter-btn" data-filter="research">Published Research</button>
@@ -746,8 +746,26 @@ footer{
       </div>
     </div>
 
-    <div class="proj-card" data-cat="ai systems team">
+    <div class="proj-card" data-cat="ai systems">
       <div class="proj-n">02</div>
+      <span class="badge b-ai">AI / Agentic RAG</span>
+      <div class="proj-name">IMMIGRATION NAVIGATOR</div>
+      <div class="proj-desc">An AI assistant answering immigration &amp; tax questions for F-1 students, grounded strictly in real USCIS, SEVP, and IRS sources — never general LLM knowledge. A 5-stage LangGraph pipeline (Planner → Ground → Contradiction Check → Verify → Build Answer) with hybrid vector + full-text search fused via Reciprocal Rank Fusion, LLM re-ranking, and chunk-neighbor expansion. A verifier decomposes every answer into atomic claims and screens out anything that crosses from general rule into personalized advice. Abstains with a specific reason rather than guessing when the corpus doesn't cover something.</div>
+      <div class="proj-metrics">
+        <span class="pm">3,183 indexed chunks</span>
+        <span class="pm">61 offline tests</span>
+        <span class="pm neutral">Explicit abstention, not guessing</span>
+      </div>
+      <div class="stack">
+        <span class="sc">Python</span><span class="sc">FastAPI</span><span class="sc">LangGraph</span><span class="sc">GPT-4o</span><span class="sc">pgvector</span><span class="sc">Postgres FTS</span><span class="sc">curl_cffi</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/Dhevdharsan/AI-Immigration-Advisor/tree/main" target="_blank" rel="noopener" class="proj-link primary">⌥ GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="ai systems team">
+      <div class="proj-n">03</div>
       <span class="badge b-team">Team Project</span>
       <div class="proj-name">SMART EXPENSE ANALYZER</div>
       <div class="proj-desc">Upload a receipt photo and it auto-reads, categorizes, budgets, and forecasts whether you'll run out of money next month. Built with three teammates; owned the ML forecasting module — the XGBoost forecasting service (lag features, cold-start detection, sigmoid burnout probability) and the predictions API. Led the OCR migration from EasyOCR to Tesseract after diagnosing a PyTorch fork-safety crash in Celery workers.</div>
@@ -766,7 +784,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="systems">
-      <div class="proj-n">03</div>
+      <div class="proj-n">04</div>
       <span class="badge b-live">Live</span>
       <div class="proj-name">THE GUITAR ROOM</div>
       <div class="proj-desc">A full marketing site and Practice Studio built unprompted for my real guitar mentor's school in Chennai after noticing the old site was outdated — now in daily use across two locations. Self-taught the Web Audio API from scratch: a mic-based autocorrelation tuner, a metronome, and a six-genre drum machine with hand-authored grooves, all with zero external audio samples.</div>
@@ -784,7 +802,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="ai systems">
-      <div class="proj-n">04</div>
+      <div class="proj-n">05</div>
       <span class="badge b-live">Live</span>
       <div class="proj-name">AGENTIC RESEARCH ASSISTANT</div>
       <div class="proj-desc">Live AI agent with real-time byte streaming, ThreadPoolExecutor concurrent scraping, and strict JSON-mode LLM outputs with source-URL attribution to prevent hallucination. Solved an Nginx response-buffering bug in production (X-Accel-Buffering header) and a pydantic-core Rust compilation failure (pinned httpx==0.27.2, Python 3.11).</div>
@@ -802,7 +820,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="ai team">
-      <div class="proj-n">05</div>
+      <div class="proj-n">06</div>
       <span class="badge b-team">Coursework · COMPSCI 683</span>
       <div class="proj-name">GAUNTLETAGENT — POKER AI</div>
       <div class="proj-desc">A heads-up Limit Texas Hold'em AI: depth-3 alpha-beta minimax over a 14-feature linear evaluator, time-bounded (0.15s) Monte Carlo postflop equity, 5-profile opponent modeling, and a 3-tier bluff pipeline. Q-Learning got stuck in a local optimum, so I switched to a genetic algorithm (population of 8, 10 generations) to escape it and converge on a tight-aggressive strategy. Also built a duplicate-hand evaluation framework to strip luck out of agent comparisons.</div>
@@ -820,7 +838,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="ai systems">
-      <div class="proj-n">06</div>
+      <div class="proj-n">07</div>
       <span class="badge b-ai">Big Data</span>
       <div class="proj-name">FLIGHTDELAYPREDICTOR</div>
       <div class="proj-desc">A distributed ML pipeline on PySpark, Spark MLlib, and Databricks predicting US domestic flight delays from 1M+ records too large for a single machine — leveraging lazy evaluation and the Catalyst Optimizer. Caught a severe class imbalance that was quietly inflating the accuracy score; fixed via downsampling and switched evaluation to AUC.</div>
@@ -838,7 +856,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="ai team">
-      <div class="proj-n">07</div>
+      <div class="proj-n">08</div>
       <span class="badge b-team">Coursework · COMPSCI 687</span>
       <div class="proj-name">F1 RACE STRATEGY — REINFORCEMENT LEARNING</div>
       <div class="proj-desc">A 3-person team project comparing RL algorithms for F1 pit-stop strategy. Co-designed and debugged two environments — a discrete tabular MDP and a continuous 8-dimensional MDP — and implemented the full PPO pipeline: rollout collection, Generalized Advantage Estimation, and a clipped surrogate objective, reaching a 100% win rate. Contributed to hyperparameter tuning across DQN, DDQN, PPO, and Actor-Critic, and co-authored the comparative analysis writeup.</div>
@@ -854,7 +872,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="ai research">
-      <div class="proj-n">08</div>
+      <div class="proj-n">09</div>
       <span class="badge b-pub">Published · Frontiers 2025</span>
       <div class="proj-name">NRIQA & LDCT ENHANCEMENT</div>
       <div class="proj-desc">Diagnosis-based no-reference image quality assessment for 1,000 low-dose CT scans. SVR with 25 SHAP-selected features (GLCM, LBP, frequency-domain) and 100-fold cross-validation achieved PLCC 0.9671 — surpassing every prior published baseline. 96% radiologist-verified quality improvement after Laplacian sharpening.</div>
@@ -873,7 +891,7 @@ footer{
     </div>
 
     <div class="proj-card" data-cat="ai research">
-      <div class="proj-n">09</div>
+      <div class="proj-n">10</div>
       <span class="badge b-pub">Published · Springer 2024</span>
       <div class="proj-name">CATARACT DETECTION VIA DEEP LEARNING</div>
       <div class="proj-desc">Comparative study on 1,015 retinal images. ResNet-50 with ImageNet transfer learning achieved 83% accuracy vs EfficientNet's 70% — better across precision, recall, F1, and AUC, since the class-imbalanced dataset made accuracy alone misleading.</div>
